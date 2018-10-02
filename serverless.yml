@@ -1,0 +1,28 @@
+service: httpGitScanner
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+  versionFunctions: false
+  stage: dev
+
+package:
+  include:
+  - package.json
+  - package-lock.json
+  - handler.js
+  - lib/**
+
+functions:
+  handle:
+    handler: handler.handle
+    memorySize: 128
+    timeout: 300
+
+# you can add CloudFormation resource templates here
+resources:
+  Resources:
+    # TODO add an SQS queue that the lambda is gonna be triggered by. The queue should be connected to pathFinderLambda SNS
+    # and the subscription policy should define that you're only interested in the GIT stuff... as soon as
+    # this kind of information is actually published by the pathFinderLambda

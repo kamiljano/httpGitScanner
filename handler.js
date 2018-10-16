@@ -1,6 +1,21 @@
 'use strict';
 
+const downloadManager = require('./lib/download/downloadManager');
+
+const getDotGitUrl = url => {
+  const result = url.match(/.*\/\.git\//);
+  return result ? result[0] : undefined;
+};
+
 module.exports.handle = async event => {
   console.log(`The lambda has been triggered with event ${JSON.stringify(event)}`);
-  // TODO: pull the git repo from URL from the event, do GIT hard reset and scan for the credentials
+  const gitRepoUrl = getDotGitUrl(event.url);
+  if (!gitRepoUrl) {
+    console.error('Unsupported path ' + event.url);
+    return;
+  }
+  await downloadManager.downloadGitRepository(gitRepoUrl);
+  // TODO: do GIT hard reset and scan for the credentials
+
+  console.log('Lambda executed successfully');
 };

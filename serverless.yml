@@ -19,6 +19,8 @@ functions:
     handler: handler.handle
     memorySize: 128
     timeout: 300
+    environment:
+      TEMP_DIR: ${opt:tempDir, '/tmp/repo'}
 
 # you can add CloudFormation resource templates here
 resources:

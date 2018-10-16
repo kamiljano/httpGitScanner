@@ -10,4 +10,4 @@ this lambda downloads that repository in search of any credentials.
 
 # Local execution
 
-    serverless invoke local --function handle --path events/detectedGit.json
+    serverless invoke local --function handle --path events/detectedGit.json --tempDir <somePathOnYourDriveForTemporaryFiles>

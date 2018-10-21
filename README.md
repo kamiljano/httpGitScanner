@@ -14,6 +14,8 @@ directory contains files with random names that cannot be pre-configured. This i
 a git repository is there may be not sufficient. It has to be available on an HTTP server that allows
 you to browse the directories (such as apache server). This means that this will not work for instance with cloud buckets.
 
+![Design](./docs/httpGitScanner.png "Design")
+
 # Local execution
 
     serverless invoke local --function handle --path events/detectedGit.json --tempDir <somePathOnYourDriveForTemporaryFiles>
